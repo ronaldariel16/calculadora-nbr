@@ -44,8 +44,9 @@ def render():
     # ENTRADA: solicitação
     # ===================================================================
     st.subheader("1. Esforço solicitante")
-    sd_default = st.session_state.get("Sd_modulo1", 117.82)
-    if "Sd_modulo1" in st.session_state:
+    sd_raw = st.session_state.get("Sd_modulo1")
+    sd_default = sd_raw if sd_raw is not None else 117.82
+    if sd_raw is not None:
         st.success(f"Sd importado do Módulo 1: {sd_default:.2f} kN")
     sd = st.number_input("Sd — força de tração solicitante (kN)", value=float(sd_default), step=1.0)
 
